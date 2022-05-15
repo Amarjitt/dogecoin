@@ -1,0 +1,14 @@
+{
+  "root": [
+    {
+      "methods": [
+        "HEAD",
+        "GET"
+      ],
+      "name": "",
+      "pattern": "/",
+      "handler": "Closure",
+      "middleware": []
+    }
+  ]
+}

@@ -1,0 +1,32 @@
++----------+------------+----------------------------------+--------------+-----------------+-----------+-------------+----------+--------+------+------------+---------+---------------+---------+------------+
+| Table    | Non_unique | Key_name                         | Seq_in_index | Column_name     | Collation | Cardinality | Sub_part | Packed | Null | Index_type | Comment | Index_comment | Visible | Expression |
++----------+------------+----------------------------------+--------------+-----------------+-----------+-------------+----------+--------+------+------------+---------+---------------+---------+------------+
+| products |          0 | PRIMARY                          |            1 | id              | A         |           0 |     NULL |   NULL |      | BTREE      |         |               | YES     | NULL       |
+| products |          1 | products_brand_id_foreign        |            1 | brand_id        | A         |           0 |     NULL |   NULL | YES  | BTREE      |         |               | YES     | NULL       |
+| products |          1 | products_category_id_foreign     |            1 | category_id     | A         |           0 |     NULL |   NULL | YES  | BTREE      |         |               | YES     | NULL       |
+| products |          1 | products_sub_category_id_foreign |            1 | sub_category_id | A         |           0 |     NULL |   NULL | YES  | BTREE      |         |               | YES     | NULL       |
+| products |          1 | products_tax_foreign             |            1 | tax             | A         |           0 |     NULL |   NULL | YES  | BTREE      |         |               | YES     | NULL       |
+| products |          1 | products_name_index              |            1 | name            | A         |           0 |     NULL |   NULL |      | BTREE      |         |               | YES     | NULL       |
+| products |          1 | products_business_id_index       |            1 | business_id     | A         |           0 |     NULL |   NULL |      | BTREE      |         |               | YES     | NULL       |
+| products |          1 | products_unit_id_index           |            1 | unit_id         | A         |           0 |     NULL |   NULL |      | BTREE      |         |               | YES     | NULL       |
+| products |          1 | products_created_by_index        |            1 | created_by      | A         |           0 |     NULL |   NULL |      | BTREE      |         |               | YES     | NULL       |
++----------+------------+----------------------------------+--------------+-----------------+-----------+-------------+----------+--------+------+------------+---------+---------------+---------+------------+
+
+
+
+PRIMARY KEY (`id`),
+  KEY `products_brand_id_foreign` (`brand_id`),
+  KEY `products_category_id_foreign` (`category_id`),
+  KEY `products_sub_category_id_foreign` (`sub_category_id`),
+  KEY `products_tax_foreign` (`tax`),
+  KEY `products_name_index` (`name`),
+  KEY `products_business_id_index` (`business_id`),
+  KEY `products_unit_id_index` (`unit_id`),
+  KEY `products_created_by_index` (`created_by`),
+  CONSTRAINT `products_brand_id_foreign` FOREIGN KEY (`brand_id`) REFERENCES `brands` (`id`) ON DELETE CASCADE,
+  CONSTRAINT `products_business_id_foreign` FOREIGN KEY (`business_id`) REFERENCES `business` (`id`) ON DELETE CASCADE,
+  CONSTRAINT `products_category_id_foreign` FOREIGN KEY (`category_id`) REFERENCES `categories` (`id`) ON DELETE CASCADE,
+  CONSTRAINT `products_created_by_foreign` FOREIGN KEY (`created_by`) REFERENCES `users` (`id`) ON DELETE CASCADE,
+  CONSTRAINT `products_sub_category_id_foreign` FOREIGN KEY (`sub_category_id`) REFERENCES `categories` (`id`) ON DELETE CASCADE,
+  CONSTRAINT `products_tax_foreign` FOREIGN KEY (`tax`) REFERENCES `tax_rates` (`id`),
+  CONSTRAINT `products_unit_id_foreign` FOREIGN KEY (`unit_id`) REFERENCES `units` (`id`) ON DELETE CASCADE
